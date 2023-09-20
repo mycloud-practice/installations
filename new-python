@@ -50,3 +50,10 @@ while True:
         break
     else:
         print("Invalid choice. Please enter a valid option.")
+
+
+
+emp_id,emp_name,dept,designation
+100,Krushna,Devops,Associate
+101,Mohan,HR,Manager
+102,Karthik,THub,Manager 
