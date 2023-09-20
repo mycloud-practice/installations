@@ -1,0 +1,52 @@
+#pandas for processing csv file
+import pandas as pd
+df = pd.read_csv('employee_data.csv')
+
+# Display the data
+def display_data():
+    print("\nEmployee Data:")
+    print(df)
+
+#Menu 
+while True:
+    print("\nMenu:")
+    print("1. Read Employee Data")
+    print("2. Add New Employee")
+    print("3. Update existing Employee Designation")
+    print("4. Delete an Employee")
+    print("5. Save and Exit")
+
+    choice = input("Enter your choice (1/2/3/4/5): ")
+
+    if choice == '1':
+        display_data()
+    elif choice == '2':
+        new_emp = {
+           
+            'emp_id': int(input("Enter Employee ID: ")),
+            'emp_name': input("Enter Employee Name: "),
+            'dept' : input("Enter Department of Employee"), 
+            'designation': input("Enter Designation of Employee ")
+        }
+
+        df = df.append(new_emp, ignore_index=True)
+        print("New Employee added successfully.")
+        display_data()
+    elif choice == '3':
+        employee_id = int(input("Enter Employee ID to update data: "))
+        new_designation = float(input("Enter the new Designation: "))
+        df.loc[df['emp_id'] == employee_id, 'designation'] = new_designation
+        print("Designation Data updated.")
+        display_data()
+    elif choice == '4':
+        employee_id = int(input("Enter Employee ID to delete: "))
+        df = df[df['emp_id'] != employee_id]
+        print("Employee deleted from data.")
+        display_data()
+    elif choice == '5':
+        # Save the updated data back to the CSV file and exit
+        df.to_csv('employee_data.csv', index=False)
+        print("Data saved. Exiting program.")
+        break
+    else:
+        print("Invalid choice. Please enter a valid option.")
